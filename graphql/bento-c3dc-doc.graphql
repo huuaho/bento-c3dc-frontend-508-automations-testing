@@ -559,21 +559,6 @@ type GroupCount {
     subjects: Int
 }
 
-type FileOverview {
-    file_name: String
-    file_type: String
-    file_description: String
-    file_format: String
-    file_size: Int
-    md5sum: String
-    file_status: String
-    uuid: String
-    file_location: String
-    subject_id: String
-    study_id: String
-    program_id: String
-}
-
 type StudyInfo {
     study_id: String
     study_description: String
@@ -634,33 +619,8 @@ type StudySubjectCount {
     subjectCount: Int
 }
 
-type SubjectOverview {
-    pcdc_subject_id: String
-    race: String
-    sex: String
-    disease_phase: String
-    treatment_arm: String
-    disease_site: String
-    data_contributor_id: String
-    ae_grade: String
-    ae_outcome: String
-    study_id: String
-    program_id: String
-    cancer: String
-    files: [FileId]
-}
-
 type FileId {
     file_id: String
-}
-
-type SearchResult {
-    numOfPrograms: Int
-    numberOfSubjects: Int
-    num_of_studies: Int
-    numberOfFiles: Int
-    fileIds: [String],
-    subjectIds: [String]
 }
 
 schema {
@@ -693,14 +653,6 @@ type QueryType {
     subjectDetails(subject_id: String): SubjectDetail 
 
     subjectCourseTiming(subject_id: String): [Course_Timing_Table] 
-
-    fileOverview(file_ids: [String] = [], order_by: String = ""): [FileOverview] 
-
-    fileOverviewDesc(file_ids: [String] = [], order_by: String = ""): [FileOverview] 
-
-    subjectOverviewPaged(subject_ids: [String] = [], order_by: String = ""): [SubjectOverview] 
-
-    subjectOverviewPagedDesc(subject_ids: [String] = [], order_by: String = ""): [SubjectOverview] 
 
     studySubjectCountByDiseasePhase(study_id: String): [GroupCount] 
 
@@ -923,20 +875,4 @@ type QueryType {
         fileType: [String] = [],
         cancer: [String] = []
     ): [GroupCount] 
-
-    searchSubjects(
-        pcdc_subject_id: [String] = [],
-        program_id: [String] = [],
-        data_contributor_id: [String] = [],
-        study_id: [String] = [],
-        treatment_arm: [String] = [],
-        race: [String] = [],
-        sex: [String] = [],
-        disease_phase: [String] = [],
-        ae_outcome: [String] = [],
-        ae_grade: [String] = [],
-        disease_site: [String] = [],
-        fileType: [String] = [],
-        cancer: [String] = []
-    ): SearchResult 
 }
