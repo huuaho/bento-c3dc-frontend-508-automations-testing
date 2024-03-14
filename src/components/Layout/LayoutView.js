@@ -10,8 +10,9 @@ import Resources from '../../pages/resources/resourcesView';
 import Error from '../../pages/error/Error';
 import Search from '../../pages/search/searchView';
 import Inventory from '../../pages/inventory/inventoryController';
-import Cart from '../../pages/cart/cartController';
+//import Cart from '../../pages/cart/cartController';
 import ScrollButton from '../ScrollButton/ScrollButtonView';
+import StudyDetailContainer from "../../pages/studyDetail/studyDetailController";
 // import NewsDetail from '../../pages/news/newsDetailView';
 
 const Layout = () => {
@@ -26,7 +27,7 @@ const Layout = () => {
           <Route path="/about" element={<About />} />
           <Route path="/sitesearch" element={<Search />} />
           <Route path="/explore" element={<Inventory />} />
-          <Route path="/fileCentricCart" element={<Cart />} />
+          <Route path="/studyDetail" element={<StudyDetailContainer />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
