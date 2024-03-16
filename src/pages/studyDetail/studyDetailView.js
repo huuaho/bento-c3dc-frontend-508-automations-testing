@@ -34,10 +34,10 @@ const StudyDetailView = ({ classes, data, theme }) => {
   };
   const [programData, setProgramData] = useState({
     programDetail: {
-      num_subjects: 10, // Example dummy data
-      num_samples: 20, // Example dummy data
-      num_lab_procedures: 30, // Example dummy data
-      num_files: 40, // Example dummy data
+      num_anatomic: 10, 
+      num_samples: 20, 
+      num_lab_procedures: 30, 
+      num_files: 40, 
     },
     field1: "dbGap data set description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque diam volutpat commodo sed. In dictum non consectetur a erat nam. Ut etiam sit amet nisl. At ultrices mi tempus imperdiet. Adipiscing at in tellus integer feugiat scelerisque varius. Eget dolor morbi non arcu risus quis. Cras tincidunt lobortis feugiat vivamus at augue eget. Morbi leo urna molestie at elementum eu facilisis sed. Vel pharetra vel turpis nunc.",
     field2: "Value 2",
@@ -49,20 +49,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
 
   //const redirectToArm = (programArm) => onClearAllAndSelectFacetValue('studies', `${programArm.rowData[0]}: ${programArm.rowData[1]}`);
 
-  const stat = {
-    numberOfPrograms: 1,
-    numberOfStudies: programData.num_subjects !== undefined ? programData.studies.length : 'undefined',
-    numberOfSubjects: programData.num_subjects !== undefined ? programData.num_subjects : 'undefined',
-    numberOfSamples: programData.num_samples !== undefined ? programData.num_samples : 'undefined',
-    numberOfLabProcedures: programData.num_lab_procedures !== undefined ? programData.num_lab_procedures : 'undefined',
-    numberOfFiles: programData.num_files !== undefined ? programData.num_files : 'undefined',
-  };
-
-  const breadCrumbJson = [{
-    name: `${breadCrumb.label}`,
-    to: `${breadCrumb.link}`,
-    isALink: true,
-  }];
+ 
 
   const updatedAttributesData = [
     {
@@ -269,7 +256,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                       </span>
                      
                         <div  style={{color:'gray',fontSize:20}} >
-                         { panel.dataField}
+                         {programData.programDetail[panel.dataField]}
                        
                       </div>
                     </div>

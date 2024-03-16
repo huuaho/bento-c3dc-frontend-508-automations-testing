@@ -80,12 +80,12 @@ const rightPanel = {
   ],
   files: [
     {
-      dataField: 'num_files',
+      dataField: 'num_participants',
       label: 'PARTICIPANTS',
       display: true,
     },
     {
-      dataField: 'num_files',
+      dataField: 'num_survivals',
       label: 'SURVIVAL RECORDS',
       display: true,
     },
@@ -95,7 +95,7 @@ const rightPanel = {
       display: true,
     },
     {
-      dataField: 'num_files',
+      dataField: 'num_anatomic_sites',
       label: 'ANATOMICAL SITES',
       display: true,
     },
@@ -172,6 +172,20 @@ query programDetail($program_id: String!) {
   }
 }`;
 
+const GET_STUDY_DETAIL_DATA_QUERY = gql`
+query studyDetails($study_id: String) {
+  studyDetails(study_id: $study_id) {
+      num_anatomic_sites
+      num_diseases
+      num_participants
+      num_survivals
+      phs_accession
+      study_description
+
+      __typename
+  }
+}`
+
 export {
   pageTitle,
   pageSubTitle,
@@ -181,6 +195,7 @@ export {
   rightPanel,
   externalLinkIcon,
   breadCrumb,
-  GET_PROGRAM_DETAIL_DATA_QUERY,
+  // GET_PROGRAM_DETAIL_DATA_QUERY,
+  GET_STUDY_DETAIL_DATA_QUERY,
   table,
 };
