@@ -90,7 +90,7 @@ const rightPanel = {
       display: true,
     },
     {
-      dataField: 'num_files',
+      dataField: 'num_diseases',
       label: 'DIGNOSIS',
       display: true,
     },
@@ -143,34 +143,34 @@ const table = {
 };
 
 // --------------- GraphQL query - Retrieve program details --------------
-const GET_PROGRAM_DETAIL_DATA_QUERY = gql`
-query programDetail($program_id: String!) {
-  programDetail(program_id: $program_id) {
-    program_acronym
-    program_id
-    program_name
-    program_full_description
-    institution_name
-    program_external_url
-    num_subjects
-    num_files
-    num_samples
-    num_lab_procedures
-    disease_subtypes
-    diagnoses {
-      group
-      subjects
-    }
-    studies { 
-      study_name
-      study_type
-      study_acronym
-      study_info
-      study_full_description
-      num_subjects
-    }
-  }
-}`;
+// const GET_PROGRAM_DETAIL_DATA_QUERY = gql`
+// query programDetail($program_id: String!) {
+//   programDetail(program_id: $program_id) {
+//     program_acronym
+//     program_id
+//     program_name
+//     program_full_description
+//     institution_name
+//     program_external_url
+//     num_subjects
+//     num_files
+//     num_samples
+//     num_lab_procedures
+//     disease_subtypes
+//     diagnoses {
+//       group
+//       subjects
+//     }
+//     studies { 
+//       study_name
+//       study_type
+//       study_acronym
+//       study_info
+//       study_full_description
+//       num_subjects
+//     }
+//   }
+// }`;
 
 const GET_STUDY_DETAIL_DATA_QUERY = gql`
 query studyDetails($study_id: String) {

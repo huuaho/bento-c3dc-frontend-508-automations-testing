@@ -4,7 +4,7 @@ import {
   withStyles,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+import openBook from "../../assets/resources/openBook.svg";
 
 import clsx from 'clsx';
 import globalData from '../../bento/siteWideConfig';
@@ -34,10 +34,10 @@ const StudyDetailView = ({ classes, data, theme }) => {
   };
   const [programData, setProgramData] = useState({
     programDetail: {
-      num_anatomic: 10, 
-      num_samples: 20, 
-      num_lab_procedures: 30, 
-      num_files: 40, 
+      num_anatomic_sites: 10, 
+      num_diseases: 20, 
+      num_participants: 30, 
+      num_survivals: 40, 
     },
     field1: "dbGap data set description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque diam volutpat commodo sed. In dictum non consectetur a erat nam. Ut etiam sit amet nisl. At ultrices mi tempus imperdiet. Adipiscing at in tellus integer feugiat scelerisque varius. Eget dolor morbi non arcu risus quis. Cras tincidunt lobortis feugiat vivamus at augue eget. Morbi leo urna molestie at elementum eu facilisis sed. Vel pharetra vel turpis nunc.",
     field2: "Value 2",
@@ -54,7 +54,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
   const updatedAttributesData = [
     {
       label: "Study Description",
-      internalLink: true,
+      internalLink: false,
       actualLink: "/link/",
       actualLinkId: 0,
       dataField: "field1"
@@ -98,20 +98,27 @@ const StudyDetailView = ({ classes, data, theme }) => {
     <>
     {//  <StatsView data={stat} />
     }
+    <span style={{marginLeft:"7%",fontSize:16}}>
+      <span style={{color:'#005EA2'}}>
+    {"Home > study"}    </span>
+  {"Study Code  Target-NBL  "} </span>
       <div className={classes.container}>
       <h1 style={{marginLeft:'6%'}}>C3DC Studies</h1>
+      
         <div className={classes.header}>
          
           <div className={classes.headerTitle}>
             <div className={classes.headerMainTitle} id="program_detail_title">
              
-              <span style={{color:'white',alignSelf:'flex-start',fontWeight:'normal'}}>
+              <span style={{color:'white',alignSelf:'flex-start',fontWeight:'normal',marginTop:10}}>
                 {'Study Code: '}
                <span style ={{fontWeight:'bold'}}>
                Target-NBL
                </span>
-              
-              </span>
+            
+             </span>
+             <img src={openBook} style={{width:50,height:50,color:'white',margin:20,marginTop: 0}} />
+            
             </div>
            
           </div>
@@ -221,7 +228,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                                     {attribute.label}
                                   </span>
                                   <div>
-                                    <span className={classes.content} id={`program_detail_left_section_description_${index + 1}`}>
+                                    <span style={{color:'black'}} id={`program_detail_left_section_description_${index + 1}`}>
                                       {' '}
                                       {programData[attribute.dataField]}
                                       {' '}
@@ -243,11 +250,11 @@ const StudyDetailView = ({ classes, data, theme }) => {
               sm={6}
               xs={12}
             >
-              <Grid container spacing={16} direction="row" className={classes.detailContainerRight}>
+              <div  style={{height:500}}  className={classes.detailContainerRight}>
               
 
                 {  rightPanel.files.map((panel)=>   (
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{height:100,height:60,margin:5}}>
                     <div className={classes.fileContainer}>
                       <span
                         className={classes.detailContainerHeader}
@@ -262,7 +269,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                     </div>
                   </Grid>
                 ))}
-              </Grid>
+              </div>
             </Grid>
 
           </Grid>
@@ -331,7 +338,7 @@ const styles = (theme) => ({
     paddingBottm: '17px',
   },
   container: {
-    paddingTop: '50px',
+    paddingTop: '10px',
     fontFamily: theme.custom.fontFamily,
     height:"400px",
     background: '#fff',
@@ -343,6 +350,7 @@ const styles = (theme) => ({
     fontSize: '15px',
     fontFamily: theme.custom.fontFamily,
     lineHeight: '14px',
+    color:'black'
   },
   warning: {
     color: theme.palette.warning.main,
@@ -394,7 +402,14 @@ const styles = (theme) => ({
     fontSize: '26px',
     lineHeight: '24px',
     paddingLeft: '0px',
+textAlign: 'center',
+alignItem: 'center',
+justifyContent:'center',
+maxHeight: 50,
+display:'flex',
+flexDirection: 'row',
 
+overflow:'hidden'
   },
   headerSubTitleCate: {
     color: '#00B0BD',
@@ -509,7 +524,7 @@ const styles = (theme) => ({
     overflowY: 'auto',
     overflowX: 'hidden',
     width: '103.9%',
-    margin: '0px -8px -5px -21px',
+      margin: '20px'
   },
   borderRight: {
     borderRight: '#81a6b9 1px solid',
@@ -592,7 +607,7 @@ const styles = (theme) => ({
     paddingBottom: '20px',
   },
   fileContainer: {
-    paddingTop: '4px',
+    paddingTop: '0px',
   },
   fileContent: {
     backgroundColor: '#F3F3F3',
