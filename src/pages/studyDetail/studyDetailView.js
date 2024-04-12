@@ -22,34 +22,12 @@ import { WidgetGenerator } from '@bento-core/widgets';
 const StudyDetailView = ({ classes, data, theme }) => {
   //const programData = data.programDetail;
 
-  const widgetGeneratorConfig = {
-    theme,
-    DonutConfig: {
-      colors,
-      styles: {
-        cellPadding: 0,
-        textOverflowLength: 20,
-      },
-    },
-  };
-  const [programData, setProgramData] = useState({
-    programDetail: {
-      num_anatomic_sites: 10, 
-      num_diseases: 20, 
-      num_participants: 30, 
-      num_survivals: 40, 
-    },
-    field1: "dbGap data set description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque diam volutpat commodo sed. In dictum non consectetur a erat nam. Ut etiam sit amet nisl. At ultrices mi tempus imperdiet. Adipiscing at in tellus integer feugiat scelerisque varius. Eget dolor morbi non arcu risus quis. Cras tincidunt lobortis feugiat vivamus at augue eget. Morbi leo urna molestie at elementum eu facilisis sed. Vel pharetra vel turpis nunc.",
-    field2: "Value 2",
-    field3: "https://internal-link.com/",
-    field4: "https://external-link.com/",
-    field5: "Value 5",
-    field6: "Value 6"
-  });
-
-  //const redirectToArm = (programArm) => onClearAllAndSelectFacetValue('studies', `${programArm.rowData[0]}: ${programArm.rowData[1]}`);
-
  
+  const [studyD, setProgramData] = useState(
+    {"data":{"studyDetails":{"phs_accession":"phs000467","study_description":"There are ~214 fully characterized patient cases with neuroblastoma (all tumor/normal pairs, 10 with relapse sample as well) that will make up the TARGET NBL dataset, along with some cell lines and xenografts. The dataset includes 24 4S cases as well. Each fully characterized case has gene expression, tumor and paired normal copy number analyses, methylation and comprehensive next-generation sequencing to include whole genome and/or whole exome sequencing. A majority of these cases will also have mRNA-seq and methylation data available as well. There are additionally a large number of cases, both low and high risk, with partial molecular characterization to include some next generation and targeted Sanger sequencing making this a large and informative genomic dataset.","num_participants":1119,"num_diseases":3,"num_anatomic_sites":48,"num_survivals":1119,"__typename":"StudyDetailsResult"}}}
+  );
+    const studyData = studyD.data;
+     
 
   const updatedAttributesData = [
     {
@@ -57,33 +35,8 @@ const StudyDetailView = ({ classes, data, theme }) => {
       internalLink: false,
       actualLink: "/link/",
       actualLinkId: 0,
-      dataField: "field1"
+      dataField: "study_description"
     },
-    {
-      label: "Attribute 2",
-      externalLink: true,
-      actualLink: "https://external-link.com/",
-      actualLinkId: 1,
-      dataField: "field2"
-    },
-    {
-      label: "Attribute 3",
-      internalLinkToLabel: true,
-      dataField: "field3"
-    },
-    {
-      label: "Attribute 4",
-      externalLinkToLabel: true,
-      dataField: "field4"
-    },
-    {
-      label: "Attribute 5",
-      dataField: "field5"
-    },
-    {
-      label: "Attribute 6",
-      dataField: "field6"
-    }
   ];
   
  
@@ -98,12 +51,15 @@ const StudyDetailView = ({ classes, data, theme }) => {
     <>
     {//  <StatsView data={stat} />
     }
+    <div className={classes.whiteSpaceTop}>
+
+    </div>
     <span style={{marginLeft:"7%",fontSize:16}}>
-      <span style={{color:'#005EA2'}}>
+      <span style={{color:'#005EA2',fontSize: 16, marginTop: 10}}>
     {"Home > study"}    </span>
-  {"Study Code  Target-NBL  "} </span>
+  {`Study Code   ${studyData.studyDetails.phs_accession}  `} </span>
       <div className={classes.container}>
-      <h1 style={{marginLeft:'6%'}}>C3DC Studies</h1>
+      <h1 style={{margin:0, marginLeft:'6%', color:'#0D3A3F',marginTop:10,fontWeight: 0}}>C3DC Studies</h1>
       
         <div className={classes.header}>
          
@@ -113,7 +69,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
               <span style={{color:'white',alignSelf:'flex-start',fontWeight:'normal',marginTop:10}}>
                 {'Study Code: '}
                <span style ={{fontWeight:'bold'}}>
-               Target-NBL
+               {studyData.studyDetails.phs_accession}
                </span>
             
              </span>
@@ -128,7 +84,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
               <span style={{color:'white',alignSelf:'flex-start',fontWeight:"normal"}}>
                 {'Participants in this Study: '}
                <span style ={{fontWeight:'bold'}}>
-               300
+               {studyData.studyDetails.num_participants}
                </span>
               
               </span>
@@ -140,11 +96,16 @@ const StudyDetailView = ({ classes, data, theme }) => {
 
         <div className={classes.detailContainer}>
 
-          <Grid container spacing={5}>
-            <Grid item lg={7} sm={6} xs={12} container>
+          <Grid container spacing={5} >
+            <Grid item lg={7} sm={6} xs={12}  container>
               <Grid container spacing={4} direction="row" className={classes.detailContainerLeft}>
+               
                 {updatedAttributesData.slice(0, 6).map((attribute, index) => (
                   <Grid item xs={12}>
+                    {
+                      index == 0 &&
+                      <h1 style={{color:'#0B536A'}}>Overview</h1>
+                    }
                     <div>
                       {
                       attribute.internalLink
@@ -156,9 +117,9 @@ const StudyDetailView = ({ classes, data, theme }) => {
                                 {' '}
                                 <Link
                                   className={classes.link}
-                                  to={`${attribute.actualLink}${programData[updatedAttributesData[attribute.actualLinkId].dataField]}`}
+                                  to={`${attribute.actualLink}${studyData[updatedAttributesData[attribute.actualLinkId].dataField]}`}
                                 >
-                                  {programData[attribute.dataField]}
+                                  {studyData[attribute.dataField]}
                                 </Link>
                                 {' '}
                               </span>
@@ -177,12 +138,12 @@ const StudyDetailView = ({ classes, data, theme }) => {
                                 <span className={classes.content}>
                                   {' '}
                                   <a
-                                    href={`${attribute.actualLink}${programData[updatedAttributesData[attribute.actualLinkId].dataField]}`}
+                                    href={`${attribute.actualLink}${studyData[updatedAttributesData[attribute.actualLinkId].dataField]}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={classes.link}
                                   >
-                                    {programData[attribute.dataField]}
+                                    {studyData[attribute.dataField]}
                                   </a>
                                   <img
                                     src={externalLinkIcon.src}
@@ -200,7 +161,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                                 <span
                                   className={classes.detailContainerHeaderLink}
                                 >
-                                  <a href={`${programData[attribute.dataField]}`} rel="noopener noreferrer">{attribute.label}</a>
+                                  <a href={`${studyData[attribute.dataField]}`} rel="noopener noreferrer">{attribute.label}</a>
                                 </span>
                               </div>
                             )
@@ -210,7 +171,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                                   <span
                                     className={classes.detailContainerHeaderLink}
                                   >
-                                    <a href={`${programData[attribute.dataField]}`} target="_blank" rel="noopener noreferrer">{attribute.label}</a>
+                                    <a href={`${studyData[attribute.dataField]}`} target="_blank" rel="noopener noreferrer">{attribute.label}</a>
                                     <img
                                       src={externalLinkIcon.src}
                                       alt={externalLinkIcon.alt}
@@ -230,7 +191,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                                   <div>
                                     <span style={{color:'black'}} id={`program_detail_left_section_description_${index + 1}`}>
                                       {' '}
-                                      {programData[attribute.dataField]}
+                                      {studyData.studyDetails[attribute.dataField]}
                                       {' '}
                                     </span>
                                   </div>
@@ -250,7 +211,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
               sm={6}
               xs={12}
             >
-              <div  style={{height:500}}  className={classes.detailContainerRight}>
+              <div   className={classes.detailContainerRight}>
               
 
                 {  rightPanel.files.map((panel)=>   (
@@ -263,7 +224,7 @@ const StudyDetailView = ({ classes, data, theme }) => {
                       </span>
                      
                         <div  style={{color:'gray',fontSize:20}} >
-                         {programData.programDetail[panel.dataField]}
+                         {studyData.studyDetails[panel.dataField]}
                        
                       </div>
                     </div>
@@ -275,28 +236,9 @@ const StudyDetailView = ({ classes, data, theme }) => {
           </Grid>
         </div>
       </div>
-      { table.display ? (
-        <div id="table_program_detail" className={classes.tableContainer}>
+   <div className={classes.whiteSpace}> 
 
-          <div className={classes.tableDiv}>
-            <div className={classes.tableTitle}>
-              <span className={classes.tableHeader}>{table.title}</span>
-            </div>
-            <Grid item xs={12}>
-              <Grid container spacing={8}>
-                <Grid item xs={12}>
-                  <Typography>
-               
-                  </Typography>
-                </Grid>
-                <Grid item xs={8}>
-                  <Typography />
-                </Grid>
-              </Grid>
-            </Grid>
-          </div>
-        </div>
-      ) : ''}
+   </div>
     </>
   );
 };
@@ -312,7 +254,7 @@ const styles = (theme) => ({
     maxWidth: '25%',
   },
   widgetTitle: {
-    color: '#0296c9',
+    color: '#0095A2',
     textTransform: 'uppercase',
     fontFamily: 'Lato !important',
     fontWeight: '500 !important',
@@ -425,6 +367,13 @@ overflow:'hidden'
     whiteSpace: 'nowrap',
     paddingRight: '200px',
   },
+  whiteSpace:{
+    height: '180px',
+    backgroundColor:'white'
+  },
+  whiteSpaceTop:{
+    height: '5px',
+  },
   headerSubTitleContent: {
     color: '#000000',
     fontWeight: 'bold',
@@ -495,15 +444,14 @@ overflow:'hidden'
     color: '#000000',
     size: '12px',
     lineHeight: '23px',
-    height: '525px',
-
+    height: '1825px'
   },
   detailContainerHeader: {
     textTransform: 'uppercase',
     fontFamily: 'Lato',
     fontSize: '17px',
     letterSpacing: '0.025em',
-    color: '#0296C9',
+    color: '#0095A2',
   },
   detailContainerHeaderLink: {
     fontFamily: 'Raleway',
@@ -520,7 +468,7 @@ overflow:'hidden'
     display: 'block',
     padding: '5px  20px 5px 0px !important',
     minHeight: '500px',
-    maxHeight: '500px',
+    maxHeight: '800px',
     overflowY: 'auto',
     overflowX: 'hidden',
     width: '103.9%',
@@ -531,15 +479,16 @@ overflow:'hidden'
   },
   detailContainerRight: {
     padding: '5px 0 5px 36px !important',
-    minHeight: '500px',
-    maxHeight: '500px',
+    minHeight: '350px',
+    maxHeight: '350px',
     overflowY: 'auto',
     overflowX: 'hidden',
-    height: '500px',
+    height: '350px',
     width: '105%',
     borderLeft: '1px solid #81A6BA',
     borderRight: '1px solid #81A6BA',
     marginLeft: '-26px',
+    marginTop: '70px',
   },
 
   tableContainer: {
@@ -591,7 +540,7 @@ overflow:'hidden'
     paddingTop: '15px !important',
   },
   title: {
-    color: '#0296c9',
+    color: '#0095A2',
     fontFamily: theme.custom.fontFamily,
     fontSize: '12px',
     letterSpacing: '0.017em',
@@ -603,7 +552,7 @@ overflow:'hidden'
     fontFamily: 'Lato',
     fontSize: '17px',
     letterSpacing: '0.025em',
-    color: '#0296c9',
+    color: '#0095A2',
     paddingBottom: '20px',
   },
   fileContainer: {

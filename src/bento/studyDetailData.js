@@ -53,7 +53,7 @@ const leftPanel = {
       label: 'Program Id',
     },
     {
-      dataField: 'program_full_description',
+      dataField: 'study_description',
       label: 'Program Description',
     },
     {
