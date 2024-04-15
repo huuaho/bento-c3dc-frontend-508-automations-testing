@@ -93,7 +93,7 @@ query search(
     last_known_survival_status: $last_known_survival_status
   ) {
     numberOfParticipants
-    numberOfDiagnoses
+    numberOfDiseases
     numberOfStudies
     numberOfSurvivals
 
@@ -1122,7 +1122,7 @@ export const tabContainers = [
     paginationAPIField: 'diagnosisOverview',
     defaultSortField: 'participant_id',
     defaultSortDirection: 'asc',
-    count: 'numberOfDiagnoses',
+    count: 'numberOfDiseases',
     fileCount: 'diagnosisFileCount',
     dataKey: 'id',
     tableID: 'diagnosis_tab_table',
@@ -1186,8 +1186,16 @@ export const tabContainers = [
         role: cellTypes.DISPLAY,
       },
       {
+        dataField: 'diagnosis_comment',
+        header: 'Diagnosis Comment',
+        display: false,
+        tooltipText: 'sort',
+        role: cellTypes.DISPLAY,
+      },
+      {
         dataField: 'disease_phase',
         header: 'Disease Phase',
+        display: false,
         display: false,
         tooltipText: 'sort',
         role: cellTypes.DISPLAY,
@@ -1200,6 +1208,9 @@ export const tabContainers = [
         role: cellTypes.DISPLAY,
       },
       {
+        dataField: 'anatomic_site',
+        header: 'Anatomic Site',
+        display: true,
         dataField: 'anatomic_site',
         header: 'Anatomic Site',
         display: true,
@@ -1256,10 +1267,12 @@ export const tabContainers = [
         role: cellTypes.DISPLAY,
       },
      
+     
     ],
     id: 'diagnosis_tab',
     tabIndex: '3',
     tableDownloadCSV: customDiagnosisTabDownloadCSV,
+    downloadFileName: 'C3DC Diagnosis Download',
     downloadFileName: 'C3DC Diagnosis Download',
     tableMsg: {
       noMatch: 'No Matching Records Found',
@@ -1399,29 +1412,7 @@ export const tabContainers = [
         cloudIcon: true,
       },
     },
-    columns: [
-      {
-        dataField: 'phs_accession',
-        header: 'Study Accession',
-        display: true,
-        tooltipText: 'sort',
-        role: cellTypes.DISPLAY,
-      },
-      {
-        dataField: 'study_short_title',
-        header: 'Study Short Title',
-        display: true,
-        tooltipText: 'sort',
-        role: cellTypes.DISPLAY,
-      },
-      {
-        dataField: 'study_acronym',
-        header: 'Study Acronym',
-        display: true,
-        tooltipText: 'sort',
-        role: cellTypes.DISPLAY,
-      },
-      // Extra Hidden Columns
+    columns: [   
       {
         dataField: "study_id",
         header: "Study ID",
@@ -1449,20 +1440,6 @@ export const tabContainers = [
         display: false,
         tooltipText: "sort",
         role: "cellTypes.DISPLAY"
-      },
-      {
-        dataField: 'study_short_title',
-        header: 'Study Short Title',
-        display: true,
-        tooltipText: 'sort',
-        role: cellTypes.DISPLAY,
-      },
-      {
-        dataField: 'study_acronym',
-        header: 'Acronym',
-        display: true,
-        tooltipText: 'sort',
-        role: cellTypes.DISPLAY,
       },
       {
         dataField: "study_description",

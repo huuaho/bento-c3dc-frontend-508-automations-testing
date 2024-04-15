@@ -11,6 +11,7 @@ import Error from '../../pages/error/Error';
 import Search from '../../pages/search/searchView';
 import Inventory from '../../pages/inventory/inventoryController';
 //import Cart from '../../pages/cart/cartController';
+//import Cart from '../../pages/cart/cartController';
 import ScrollButton from '../ScrollButton/ScrollButtonView';
 import StudyDetailContainer from "../../pages/studyDetail/studyDetailController";
 // import NewsDetail from '../../pages/news/newsDetailView';
