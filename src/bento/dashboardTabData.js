@@ -1604,6 +1604,7 @@ export const tabContainers = [
     fileCount: 'treatmentFileCount',
     dataKey: 'id',
     tableID: 'treatment_tab_table',
+    toolTipText: 'Count of Treatment Record',
     extendedViewConfig: {
       pagination: true,
       manageViewColumns: false,
@@ -1628,7 +1629,7 @@ export const tabContainers = [
       {
         dataField: "treatment_id",
         header: "Treatment ID",
-        display: false,
+        display: true,
         tooltipText: "sort",
         role: "cellTypes.DISPLAY"
       },
@@ -1694,6 +1695,7 @@ export const tabContainers = [
     fileCount: 'treatmentResponseFileCount',
     dataKey: 'id',
     tableID: 'treatment_response_tab_table',
+    toolTipText: 'Count of Treatment Response Record',
     extendedViewConfig: {
       pagination: true,
       manageViewColumns: false,
@@ -1718,7 +1720,7 @@ export const tabContainers = [
       {
         dataField: "treatment_response_id",
         header: "Treatment Response ID",
-        display: false,
+        display: true,
         tooltipText: "sort",
         role: "cellTypes.DISPLAY"
       },
@@ -1739,14 +1741,14 @@ export const tabContainers = [
       {
         dataField: "response_category",
         header: "Response Category",
-        display: false,
+        display: true,
         tooltipText: "sort",
         role: "cellTypes.DISPLAY"
       },
       {
         dataField: "response_systme",
         header: "Response System",
-        display: false,
+        display: true,
         tooltipText: "sort",
         role: "cellTypes.DISPLAY"
       },
