@@ -51,12 +51,12 @@ export const customTheme = {
         '&.treatment': {
           background: '#FFFFFF',
           color: '#000000',
-          borderTop: '6px solid #006A8F',
+          borderTop: '6px solid #006B57',
         },
         '&.treatment_response': {
           background: '#FFFFFF',
           color: '#000000',
-          borderTop: '6px solid #E39520',
+          borderTop: '6px solid #862405',
         },
         '&.MuiTypography-body1': {
           color: 'red',
